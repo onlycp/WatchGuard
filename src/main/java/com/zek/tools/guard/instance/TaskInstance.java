@@ -1,7 +1,7 @@
 package com.zek.tools.guard.instance;
 
 import com.zek.tools.guard.context.TaskContext;
-import com.zek.tools.guard.task.TaskConfig;
+import com.zek.tools.guard.config.TaskConfig;
 
 /**
  * @author chenp
