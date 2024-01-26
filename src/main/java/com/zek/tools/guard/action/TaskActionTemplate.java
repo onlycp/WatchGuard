@@ -6,7 +6,7 @@ import com.zek.tools.guard.context.TaskContext;
  * @author chenp
  * @date 2024/1/19
  */
-public interface Action {
+public interface TaskActionTemplate {
 
     /**
      * 执行动作
@@ -14,4 +14,19 @@ public interface Action {
      * @return 是否执行成功
      */
     boolean execute(TaskContext context);
+
+    /**
+     * 获取名称
+     *
+     * @return 名称
+     */
+    String name();
+
+    /**
+     * 获取描述
+     *
+     * @return 描述
+     */
+    String description();
+
 }
