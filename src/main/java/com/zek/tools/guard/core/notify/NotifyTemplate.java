@@ -1,4 +1,4 @@
-package com.zek.tools.guard.notify;
+package com.zek.tools.guard.core.notify;
 
 /**
  * 通知模板接口

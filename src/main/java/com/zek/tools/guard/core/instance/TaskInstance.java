@@ -1,12 +1,14 @@
-package com.zek.tools.guard.instance;
+package com.zek.tools.guard.core.instance;
 
-import com.zek.tools.guard.context.TaskContext;
-import com.zek.tools.guard.config.TaskConfig;
+import com.zek.tools.guard.core.context.TaskContext;
+import com.zek.tools.guard.core.config.TaskConfig;
+import lombok.Data;
 
 /**
  * @author chenp
  * @date 2024/1/19
  */
+@Data
 public class TaskInstance {
 
     /**

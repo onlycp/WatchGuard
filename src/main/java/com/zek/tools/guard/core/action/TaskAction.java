@@ -1,12 +1,12 @@
-package com.zek.tools.guard.action;
+package com.zek.tools.guard.core.action;
 
-import com.zek.tools.guard.context.TaskContext;
+import com.zek.tools.guard.core.context.TaskContext;
 
 /**
  * @author chenp
  * @date 2024/1/19
  */
-public interface TaskActionTemplate {
+public interface TaskAction {
 
     /**
      * 执行动作

@@ -1,6 +1,6 @@
-package com.zek.tools.guard.task;
+package com.zek.tools.guard.core.task;
 
-import com.zek.tools.guard.action.TaskActionTemplate;
+import com.zek.tools.guard.core.action.TaskAction;
 
 /**
  * 任务模板接口
@@ -22,7 +22,7 @@ public interface TaskTemplate {
      *
      * @return 任务动作数组
      */
-    TaskActionTemplate[] actions();
+    String[] actions();
 
     /**
      * 获取任务描述

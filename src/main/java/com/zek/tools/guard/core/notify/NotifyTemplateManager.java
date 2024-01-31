@@ -1,4 +1,4 @@
-package com.zek.tools.guard.notify;
+package com.zek.tools.guard.core.notify;
 
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.ReflectUtil;

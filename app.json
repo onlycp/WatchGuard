@@ -1,0 +1,15 @@
+{
+  "tasks": [
+    {
+      "name": "示例任务1",
+      "cron": "0/10 * * * * ?",
+      "template": "示例任务",
+      "enabled": true,
+      "properties": {
+        "command": "tsc -p .",
+        "showOutput": "silent",
+        "problemMatcher": "$tsc-watch"
+      }
+    }
+  ]
+}
