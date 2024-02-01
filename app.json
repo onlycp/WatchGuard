@@ -2,13 +2,24 @@
   "tasks": [
     {
       "name": "示例任务1",
-      "cron": "0/10 * * * * ?",
+      "cron": "0/30 * * * * ?",
       "template": "示例任务",
       "enabled": true,
+      "successNotifyChannels": ["serverChan-001"],
+      "failureNotifyChannels": [],
       "properties": {
         "command": "tsc -p .",
         "showOutput": "silent",
         "problemMatcher": "$tsc-watch"
+      }
+    }
+  ],
+  "notifies": [
+    {
+      "name": "serverChan-001",
+      "type": "serverChan",
+      "properties": {
+        "key": "SCT236579TltkYdHCzi8aYN7T1wP0qUw0s"
       }
     }
   ]
