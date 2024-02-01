@@ -44,7 +44,17 @@ public class DemoTask implements TaskTemplate {
      * @return 通知渠道数组
      */
     @Override
-    public String[] notifyChannels() {
+    public String[] successNotifyChannels() {
+        return new String[]{};
+    }
+
+    /**
+     * 获取通知渠道数组
+     *
+     * @return 通知渠道数组
+     */
+    @Override
+    public String[] failNotifyChannels() {
         return new String[0];
     }
 }

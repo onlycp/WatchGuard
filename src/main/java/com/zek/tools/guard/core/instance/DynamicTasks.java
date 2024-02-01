@@ -1,10 +1,14 @@
 package com.zek.tools.guard.core.instance;
 
 import cn.hutool.core.util.NumberUtil;
+import com.zek.tools.guard.core.AppCommandLineRunner;
 import com.zek.tools.guard.core.action.TaskAction;
 import com.zek.tools.guard.core.action.TaskActionManager;
+import com.zek.tools.guard.core.config.NotifyConfig;
 import com.zek.tools.guard.core.config.TaskConfig;
 import com.zek.tools.guard.core.context.TaskContext;
+import com.zek.tools.guard.core.notify.NotifyTemplate;
+import com.zek.tools.guard.core.notify.NotifyTemplateManager;
 import com.zek.tools.guard.core.task.ScheduledFutureHolder;
 import com.zek.tools.guard.core.task.TaskTemplate;
 import com.zek.tools.guard.core.task.TaskTemplateManager;
@@ -129,6 +133,19 @@ public class DynamicTasks {
                         TaskAction taskAction = TaskActionManager.getInstance().getTemplate(actionName);
                         taskAction.execute(taskInstance.getTaskContext());
                     }
+                    // 发送成功通知
+                    if (taskInstance.getTaskConfig().getSuccessNotifyChannels() != null && taskInstance.getTaskConfig().getSuccessNotifyChannels().size() > 0) {
+                        for (String notifyName: taskInstance.getTaskConfig().getSuccessNotifyChannels()) {
+                            // 寻找通知实例
+                            NotifyConfig notifyConfig = AppCommandLineRunner.appConfig.getNotifies().stream().filter(it->it.getName().equals(notifyName)).findFirst().orElse(null);
+                            if (notifyConfig != null) {
+                                NotifyTemplate notifyTemplate = NotifyTemplateManager.getInstance().get(notifyConfig.getType());
+                                notifyTemplate.send("任务执行成功", "任务名称:" + taskInstance.getTaskConfig().getName(), notifyConfig.getProperties());
+                            }
+
+                        }
+                    }
+
                 }
                 catch (Exception e) {
                     log.error("任务执行失败, 任务名称:{}, 异常信息", taskInstance.getTaskConfig().getName(), e);

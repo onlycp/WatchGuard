@@ -1,5 +1,7 @@
 package com.zek.tools.guard.core.notify;
 
+import java.util.Map;
+
 /**
  * 通知模板接口
  *
@@ -19,5 +21,5 @@ public interface NotifyTemplate {
      * @param title 通知标题
      * @param message 通知消息
      */
-    void send(String title, String message);
+    void send(String title, String message, Map<String, String> context);
 }

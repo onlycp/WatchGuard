@@ -1,7 +1,5 @@
 package com.zek.tools.guard.core.task;
 
-import com.zek.tools.guard.core.action.TaskAction;
-
 /**
  * 任务模板接口
  *
@@ -36,5 +34,12 @@ public interface TaskTemplate {
      *
      * @return 通知渠道数组
      */
-    String[] notifyChannels();
+    String[] successNotifyChannels();
+
+    /**
+     * 获取通知渠道数组
+     *
+     * @return 通知渠道数组
+     */
+    String[] failNotifyChannels();
 }

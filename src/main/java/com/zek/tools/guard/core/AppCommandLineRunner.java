@@ -18,10 +18,12 @@ import java.nio.file.Files;
 @Slf4j
 @Component
 public class AppCommandLineRunner implements CommandLineRunner {
+
+    public static AppConfig appConfig;
     @Override
     public void run(String... args) throws Exception {
         String config = Files.readString(new File("app.json").toPath());
-        AppConfig appConfig = JSONUtil.toBean(config, AppConfig.class);
+        appConfig = JSONUtil.toBean(config, AppConfig.class);
         appConfig.getTasks().forEach(taskConfig -> {
             log.info("register task: {}", taskConfig);
             DynamicTasks.getInstance().addTask(taskConfig);
