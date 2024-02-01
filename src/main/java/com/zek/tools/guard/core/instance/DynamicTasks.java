@@ -7,11 +7,8 @@ import com.zek.tools.guard.core.action.TaskActionManager;
 import com.zek.tools.guard.core.config.NotifyConfig;
 import com.zek.tools.guard.core.config.TaskConfig;
 import com.zek.tools.guard.core.context.TaskContext;
-import com.zek.tools.guard.core.notify.NotifyTemplate;
-import com.zek.tools.guard.core.notify.NotifyTemplateManager;
-import com.zek.tools.guard.core.task.ScheduledFutureHolder;
-import com.zek.tools.guard.core.task.TaskTemplate;
-import com.zek.tools.guard.core.task.TaskTemplateManager;
+import com.zek.tools.guard.core.push.PushTemplate;
+import com.zek.tools.guard.core.push.PushManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
@@ -127,9 +124,9 @@ public class DynamicTasks {
             executorService.submit(() -> {
                 try {
                     // 查找任务模板
-                    TaskTemplate taskTemplate = TaskTemplateManager.getInstance().getTaskTemplate(taskInstance.getTaskConfig().getTemplate());
+                    TaskConfig taskConfig = taskInstance.getTaskConfig();
                     // 依次运行Action
-                    for (String actionName: taskTemplate.actions()) {
+                    for (String actionName: taskConfig.getActions()) {
                         TaskAction taskAction = TaskActionManager.getInstance().getTemplate(actionName);
                         taskAction.execute(taskInstance.getTaskContext());
                     }
@@ -139,13 +136,11 @@ public class DynamicTasks {
                             // 寻找通知实例
                             NotifyConfig notifyConfig = AppCommandLineRunner.appConfig.getNotifies().stream().filter(it->it.getName().equals(notifyName)).findFirst().orElse(null);
                             if (notifyConfig != null) {
-                                NotifyTemplate notifyTemplate = NotifyTemplateManager.getInstance().get(notifyConfig.getType());
-                                notifyTemplate.send("任务执行成功", "任务名称:" + taskInstance.getTaskConfig().getName(), notifyConfig.getProperties());
+                                PushTemplate pushTemplate = PushManager.getInstance().get(notifyConfig.getType());
+                                pushTemplate.send("任务执行成功", "任务名称:" + taskInstance.getTaskConfig().getName(), notifyConfig.getProperties());
                             }
-
                         }
                     }
-
                 }
                 catch (Exception e) {
                     log.error("任务执行失败, 任务名称:{}, 异常信息", taskInstance.getTaskConfig().getName(), e);

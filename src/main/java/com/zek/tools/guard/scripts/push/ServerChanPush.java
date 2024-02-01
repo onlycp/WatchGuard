@@ -1,8 +1,6 @@
-package com.zek.tools.guard.core.notify.impl;
+package com.zek.tools.guard.scripts.push;
 
-import cn.hutool.http.HttpUtil;
-import com.zek.tools.guard.core.AppCommandLineRunner;
-import com.zek.tools.guard.core.notify.NotifyTemplate;
+import com.zek.tools.guard.core.push.PushTemplate;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -16,7 +14,7 @@ import java.util.Map;
  * @author chenp
  * @date 2024/2/1
  */
-public class ServerChanNotify implements NotifyTemplate {
+public class ServerChanPush implements PushTemplate {
     /**
      * 获取通知模板的名称
      */

@@ -1,4 +1,4 @@
-package com.zek.tools.guard.template.demo.action;
+package com.zek.tools.guard.scripts.actions.demo;
 
 import com.zek.tools.guard.core.action.TaskAction;
 import com.zek.tools.guard.core.context.TaskContext;
@@ -15,8 +15,7 @@ public class DemoLoginAction implements TaskAction {
      * @return 是否执行成功
      */
     @Override
-    public boolean execute(TaskContext context) {
-        return true;
+    public void execute(TaskContext context) {
     }
 
     /**
@@ -26,7 +25,7 @@ public class DemoLoginAction implements TaskAction {
      */
     @Override
     public String name() {
-        return "jd-login";
+        return "demoLogin";
     }
 
     /**

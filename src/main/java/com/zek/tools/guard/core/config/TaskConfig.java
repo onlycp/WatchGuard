@@ -30,10 +30,11 @@ public class TaskConfig {
      */
     private Boolean enabled;
 
+
     /**
-     * 任务模板
+     * 任务动作列表
      */
-    private String template;
+    private List<String> actions;
 
     /**
      * 任务属性

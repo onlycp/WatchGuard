@@ -2,13 +2,42 @@
   "tasks": [
     {
       "name": "示例任务1",
-      "cron": "0/10 * * * * ?",
-      "template": "示例任务",
+      "cron": "0/30 * * * * ?",
+      "actions": ["demoLogin"],
       "enabled": true,
+      "successNotifyChannels": ["info"],
+      "failureNotifyChannels": [],
+      "changeNotifyChannels": ["info"],
       "properties": {
-        "command": "tsc -p .",
-        "showOutput": "silent",
-        "problemMatcher": "$tsc-watch"
+      }
+    },
+    {
+      "name": "金智维115连通性",
+      "cron": "0/10 * * * * ?",
+      "actions": ["tcp-port-check"],
+      "enabled": true,
+      "successNotifyChannels": ["info"],
+      "failureNotifyChannels": [],
+      "changeNotifyChannels": ["info"],
+      "properties": {
+        "ip": "10.11.2.115",
+        "port": 23
+      }
+    }
+  ],
+  "notifies": [
+    {
+      "name": "serverChan-001",
+      "type": "serverChan",
+      "properties": {
+        "key": "SCT236579TltkYdHCzi8aYN7T1wP0qUw0s"
+      }
+    },
+    {
+      "name": "info",
+      "type": "log",
+      "properties": {
+        "key": "SCT236579TltkYdHCzi8aYN7T1wP0qUw0s"
       }
     }
   ]

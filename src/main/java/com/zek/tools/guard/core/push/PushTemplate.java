@@ -1,4 +1,4 @@
-package com.zek.tools.guard.core.notify;
+package com.zek.tools.guard.core.push;
 
 import java.util.Map;
 
@@ -8,7 +8,7 @@ import java.util.Map;
  * @author chenp
  * @date 2024/1/19
  */
-public interface NotifyTemplate {
+public interface PushTemplate {
 
     /**
      * 获取通知模板的名称

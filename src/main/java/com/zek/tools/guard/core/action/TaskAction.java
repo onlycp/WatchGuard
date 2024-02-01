@@ -11,9 +11,8 @@ public interface TaskAction {
     /**
      * 执行动作
      * @param context 任务上下文
-     * @return 是否执行成功
      */
-    boolean execute(TaskContext context);
+    void execute(TaskContext context);
 
     /**
      * 获取名称

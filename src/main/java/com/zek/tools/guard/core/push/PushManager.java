@@ -1,4 +1,4 @@
-package com.zek.tools.guard.core.notify;
+package com.zek.tools.guard.core.push;
 
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.ReflectUtil;
@@ -14,19 +14,19 @@ import java.util.Set;
  * @date 2024/1/20
  */
 @Slf4j
-public class NotifyTemplateManager {
+public class PushManager {
 
     // 单实例
-    private static NotifyTemplateManager instance = null;
+    private static PushManager instance = null;
 
-    private Map<String, NotifyTemplate> templateMap = new HashMap<>();
+    private Map<String, PushTemplate> templateMap = new HashMap<>();
 
     /*
 
      */
-    public static NotifyTemplateManager getInstance() {
+    public static PushManager getInstance() {
         if (instance == null) {
-            instance = new NotifyTemplateManager();
+            instance = new PushManager();
         }
         return instance;
     }
@@ -34,20 +34,20 @@ public class NotifyTemplateManager {
     /**
      * 私有构造方法，禁止外部实例化
      */
-    private NotifyTemplateManager() {
+    private PushManager() {
         this.scanTemplates();
     }
 
     // 扫描指定包及其子包中指定父类的任务模板
     private void scanTemplates() {
         // 使用反射工具类扫描指定包及其子包中指定父类的任务模板类
-        Set<Class<?>> classes = ClassUtil.scanPackageBySuper(GuardApplication.class.getPackageName(), NotifyTemplate.class);
+        Set<Class<?>> classes = ClassUtil.scanPackageBySuper(GuardApplication.class.getPackageName(), PushTemplate.class);
         // 遍历任务模板类集合
         for (Class<?> clazz : classes) {
             // 实例化任务模板对象
-            NotifyTemplate notifyTemplate = (NotifyTemplate) ReflectUtil.newInstance(clazz);
+            PushTemplate pushTemplate = (PushTemplate) ReflectUtil.newInstance(clazz);
             // 将任务模板对象添加到任务模板Map中，以任务模板名称作为键
-            templateMap.put(notifyTemplate.name(), notifyTemplate);
+            templateMap.put(pushTemplate.name(), pushTemplate);
         }
     }
 
@@ -57,7 +57,7 @@ public class NotifyTemplateManager {
      * @param name 任务模板名称
      * @return 任务模板对象
      */
-    public NotifyTemplate get(String name) {
+    public PushTemplate get(String name) {
         return templateMap.get(name);
     }
 
