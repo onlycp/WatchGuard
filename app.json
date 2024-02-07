@@ -12,7 +12,7 @@
       }
     },
     {
-      "name": "金智维115连通性",
+      "name": "115连通性",
       "cron": "0/10 * * * * ?",
       "actions": ["tcp-port-check"],
       "enabled": true,
