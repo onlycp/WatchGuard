@@ -1,5 +1,7 @@
 package com.zek.tools.guard.scripts.push;
 
+import com.zek.tools.guard.core.context.TaskContext;
+import com.zek.tools.guard.core.instance.TaskInstance;
 import com.zek.tools.guard.core.push.PushTemplate;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +29,7 @@ public class LogPush  implements PushTemplate {
      * @param context
      */
     @Override
-    public void send(String title, String message, Map<String, String> context) {
+    public void send(String title, String message,  TaskInstance instance) {
         log.info("通知标题: {}, 通知内容: {}", title, message);
     }
 }

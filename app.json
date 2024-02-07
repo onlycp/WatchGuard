@@ -5,7 +5,7 @@
       "cron": "0/30 * * * * ?",
       "actions": ["demoLogin"],
       "enabled": true,
-      "successNotifyChannels": ["info"],
+      "successNotifyChannels": ["pushdeer-android"],
       "failureNotifyChannels": [],
       "changeNotifyChannels": ["info"],
       "properties": {
@@ -31,6 +31,13 @@
       "type": "serverChan",
       "properties": {
         "key": "SCT236579TltkYdHCzi8aYN7T1wP0qUw0s"
+      }
+    },
+    {
+      "name": "pushdeer-android",
+      "type": "pushdeer",
+      "properties": {
+        "pushKey": "PDU28174TnRAqtHZ6gkp2eOhWkZcrNvgMeG5SkKO9"
       }
     },
     {

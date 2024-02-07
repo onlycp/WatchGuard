@@ -1,5 +1,7 @@
 package com.zek.tools.guard.scripts.push;
 
+import com.zek.tools.guard.core.context.TaskContext;
+import com.zek.tools.guard.core.instance.TaskInstance;
 import com.zek.tools.guard.core.push.PushTemplate;
 
 import java.io.BufferedReader;
@@ -30,9 +32,9 @@ public class ServerChanPush implements PushTemplate {
      * @param message 通知消息
      */
     @Override
-    public void send(String title, String message, Map<String, String> context) {
+    public void send(String title, String message, TaskInstance instance) {
         try {
-            String url = "https://sctapi.ftqq.com/" + context.get("key") + ".send";
+            String url = "https://sctapi.ftqq.com/" + instance.getTaskContext().getString("key", "") + ".send";
             String postData = "text=" + URLEncoder.encode(title, "UTF-8") + "&desp=" + URLEncoder.encode(message, "UTF-8");
 
 

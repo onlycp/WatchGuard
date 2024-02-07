@@ -1,5 +1,8 @@
 package com.zek.tools.guard.core.push;
 
+import com.zek.tools.guard.core.context.TaskContext;
+import com.zek.tools.guard.core.instance.TaskInstance;
+
 import java.util.Map;
 
 /**
@@ -21,5 +24,5 @@ public interface PushTemplate {
      * @param title 通知标题
      * @param message 通知消息
      */
-    void send(String title, String message, Map<String, String> context);
+    void send(String title, String message, TaskInstance instance);
 }
