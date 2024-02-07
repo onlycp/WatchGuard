@@ -162,7 +162,7 @@ public class DynamicTasks {
         // 初始化上下文
         TaskContext context = new TaskContext();
         // 将properties加入进来
-        context.setVariable("properties", config.getProperties());
+        context.setVariables(config.getProperties());
         task.setTaskContext(context);
         taskInstances.add(task);
         // 注册任务

@@ -21,7 +21,7 @@
       "changeNotifyChannels": ["info"],
       "properties": {
         "ip": "10.11.2.115",
-        "port": 23
+        "port": 22
       }
     }
   ],

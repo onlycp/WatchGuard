@@ -39,7 +39,7 @@ public class TaskConfig {
     /**
      * 任务属性
      */
-    private Map<String, String> properties;
+    private Map<String, Object> properties;
 
     /**
      * 任务成功通知渠道列表

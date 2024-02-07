@@ -1,6 +1,8 @@
 package com.zek.tools.guard.core.context;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,6 +16,10 @@ public class TaskContext {
      * 变量存储的Map对象
      */
     private final Map<String, Object> variables = new HashMap<>();
+    /**
+     * 日志存储的List对象
+     */
+    private List<String> logs = new ArrayList<>();
 
     /**
      * 获取指定名称的变量值
@@ -22,19 +28,7 @@ public class TaskContext {
      * @return 变量值
      */
     public Object getVariable(String name, Object defaultValue) {
-        String[] paths = name.split("\\.");
-        Map<String, Object> tempVariables = new HashMap<>(variables);
-        for (int i = 0; i < paths.length; i++) {
-            if (i == paths.length - 1) {
-                return (Integer) tempVariables.getOrDefault(name, defaultValue);
-            }
-            Object value = tempVariables.getOrDefault(paths[i], null);
-            if (value == null) {
-                return defaultValue;
-            }
-            tempVariables = (Map<String, Object>) value;
-        }
-        return null;
+       return variables.get(name);
     }
 
     /**
@@ -72,5 +66,35 @@ public class TaskContext {
      */
     public void setVariable(String name, Object value) {
         variables.put(name, value);
+    }
+
+    /*
+     * 设置多个变量值
+     */
+    public void setVariables(Map<String, Object> variables) {
+        this.variables.putAll(variables);
+    }
+
+
+    /**
+     * 添加日志
+     * @param log 日志内容
+     */
+    public void appendLog(String log) {
+        logs.add(log);
+    }
+
+    /**
+     * 获取日志列表
+     * @return 日志列表
+     */
+    public List<String> getLogs() {
+        return logs;
+    }
+    /**
+     * 清空日志
+     */
+    public void clearLogs() {
+        logs.clear();
     }
 }

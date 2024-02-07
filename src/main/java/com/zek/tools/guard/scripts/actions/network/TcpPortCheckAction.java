@@ -23,7 +23,7 @@ public class TcpPortCheckAction  implements TaskAction {
     @Override
     public void execute(TaskContext context) {
         Integer port = context.getInteger("port", -1);
-        if (port != -1) {
+        if (port  == -1) {
             throw  new ActionException("port不能为空!");
         }
         String ip = context.getString("ip", "");
