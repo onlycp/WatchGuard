@@ -24,5 +24,5 @@ public interface PushTemplate {
      * @param title 通知标题
      * @param message 通知消息
      */
-    void send(String title, String message, TaskInstance instance);
+    void send(String title, String message, TaskInstance instance, Map<String, String> notifyProperties);
 }

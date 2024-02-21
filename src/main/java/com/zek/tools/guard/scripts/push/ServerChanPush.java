@@ -32,7 +32,7 @@ public class ServerChanPush implements PushTemplate {
      * @param message 通知消息
      */
     @Override
-    public void send(String title, String message, TaskInstance instance) {
+    public void send(String title, String message, TaskInstance instance, Map<String, String> notifyProperties) {
         try {
             String url = "https://sctapi.ftqq.com/" + instance.getTaskContext().getString("key", "") + ".send";
             String postData = "text=" + URLEncoder.encode(title, "UTF-8") + "&desp=" + URLEncoder.encode(message, "UTF-8");

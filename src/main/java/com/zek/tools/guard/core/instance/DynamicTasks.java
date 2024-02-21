@@ -137,7 +137,7 @@ public class DynamicTasks {
                             NotifyConfig notifyConfig = AppCommandLineRunner.appConfig.getNotifies().stream().filter(it->it.getName().equals(notifyName)).findFirst().orElse(null);
                             if (notifyConfig != null) {
                                 PushTemplate pushTemplate = PushManager.getInstance().get(notifyConfig.getType());
-                                pushTemplate.send("任务执行成功", "任务名称:" + taskInstance.getTaskConfig().getName(), taskInstance);
+                                pushTemplate.send("任务执行成功", "任务名称:" + taskInstance.getTaskConfig().getName(), taskInstance, notifyConfig.getProperties());
                             }
                         }
                     }

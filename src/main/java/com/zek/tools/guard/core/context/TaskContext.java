@@ -1,5 +1,7 @@
 package com.zek.tools.guard.core.context;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.Map;
  * @date 2024/1/19
  * @description 任务上下文
  */
+@Slf4j
 public class TaskContext {
 
     /**
@@ -78,10 +81,11 @@ public class TaskContext {
 
     /**
      * 添加日志
-     * @param log 日志内容
+     * @param message 日志内容
      */
-    public void appendLog(String log) {
-        logs.add(log);
+    public void appendLog(String message) {
+        log.info(message);
+        logs.add(message);
     }
 
     /**

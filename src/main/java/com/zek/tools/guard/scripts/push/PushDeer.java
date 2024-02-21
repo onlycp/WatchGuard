@@ -41,7 +41,7 @@ public class PushDeer implements PushTemplate {
      * @param instance
      */
     @Override
-    public void send(String title, String message, TaskInstance instance) {
+    public void send(String title, String message, TaskInstance instance, Map<String, String> notifyProperties) {
         try {
             // 构建请求URL
             String url = "https://api2.pushdeer.com/message/push";

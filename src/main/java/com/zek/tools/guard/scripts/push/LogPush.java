@@ -29,7 +29,7 @@ public class LogPush  implements PushTemplate {
      * @param context
      */
     @Override
-    public void send(String title, String message,  TaskInstance instance) {
+    public void send(String title, String message,  TaskInstance instance, Map<String, String> notifyProperties) {
         log.info("通知标题: {}, 通知内容: {}", title, message);
     }
 }

@@ -19,7 +19,7 @@ public class TaskActionManager {
     // 单实例
     private static TaskActionManager instance = null;
 
-    private Map<String, TaskAction> taskActionTemplateHashMap = new HashMap<>();
+    private Map<String, Class<?> > taskActionTemplateHashMap = new HashMap<>();
 
     /*
 
@@ -47,7 +47,7 @@ public class TaskActionManager {
             // 实例化任务模板对象
             TaskAction taskTemplate = (TaskAction) ReflectUtil.newInstance(clazz);
             // 将任务模板对象添加到任务模板Map中，以任务模板名称作为键
-            taskActionTemplateHashMap.put(taskTemplate.name(), taskTemplate);
+            taskActionTemplateHashMap.put(taskTemplate.name(), clazz);
         }
     }
 
@@ -58,7 +58,9 @@ public class TaskActionManager {
      * @return 任务模板对象
      */
     public TaskAction getTemplate(String name) {
-        return taskActionTemplateHashMap.get(name);
+        Class<?> clazz = taskActionTemplateHashMap.get(name);
+        TaskAction taskTemplate = (TaskAction) ReflectUtil.newInstance(clazz);
+        return taskTemplate;
     }
 
 }
