@@ -1,5 +1,6 @@
 package com.zek.tools.guard.core.instance;
 
+import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.NumberUtil;
 import com.zek.tools.guard.core.AppCommandLineRunner;
 import com.zek.tools.guard.core.action.TaskAction;
@@ -121,31 +122,7 @@ public class DynamicTasks {
         }
         log.debug("表达式调度器:{} 开始执行任务， 任务数:{}", cronKey, list.size());
         for (TaskInstance taskInstance: list) {
-            executorService.submit(() -> {
-                try {
-                    // 查找任务模板
-                    TaskConfig taskConfig = taskInstance.getTaskConfig();
-                    // 依次运行Action
-                    for (String actionName: taskConfig.getActions()) {
-                        TaskAction taskAction = TaskActionManager.getInstance().getTemplate(actionName);
-                        taskAction.execute(taskInstance.getTaskContext());
-                    }
-                    // 发送成功通知
-                    if (taskInstance.getTaskConfig().getSuccessNotifyChannels() != null && taskInstance.getTaskConfig().getSuccessNotifyChannels().size() > 0) {
-                        for (String notifyName: taskInstance.getTaskConfig().getSuccessNotifyChannels()) {
-                            // 寻找通知实例
-                            NotifyConfig notifyConfig = AppCommandLineRunner.appConfig.getNotifies().stream().filter(it->it.getName().equals(notifyName)).findFirst().orElse(null);
-                            if (notifyConfig != null) {
-                                PushTemplate pushTemplate = PushManager.getInstance().get(notifyConfig.getType());
-                                pushTemplate.send("任务执行成功", "任务名称:" + taskInstance.getTaskConfig().getName(), taskInstance, notifyConfig.getProperties());
-                            }
-                        }
-                    }
-                }
-                catch (Exception e) {
-                    log.error("任务执行失败, 任务名称:{}, 异常信息", taskInstance.getTaskConfig().getName(), e);
-                }
-            });
+            executorService.submit(() -> {taskInstance.execute();});
         }
 
 

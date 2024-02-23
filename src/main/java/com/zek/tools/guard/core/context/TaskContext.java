@@ -78,6 +78,24 @@ public class TaskContext {
         this.variables.putAll(variables);
     }
 
+    /**
+     * 保存结果
+     *
+     * @param result 结果
+     */
+    public void saveResult(boolean result) {
+        this.setVariable("result", result);
+    }
+
+    /**
+     * 获取结果
+     *
+     * @return 结果
+     */
+    public boolean getResult() {
+        return (Boolean) getVariable("result", true);
+    }
+
 
     /**
      * 添加日志
